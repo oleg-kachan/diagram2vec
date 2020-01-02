@@ -26,7 +26,7 @@ pip install diagram2vec
 
 ## Example of usage
 
-```
+```python
 import diagram2vec
 
 # list of lists of ndarrays, representing a collection of persistence diagrams
