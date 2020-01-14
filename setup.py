@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="diagram2vec", # Replace with your own username
-    version="0.0.1",
+    version="0.0.2",
     author="Oleg Kachan",
     author_email="oleg.n.kachan@gmail.com",
     description="Vector Representations of Persistence Diagrams",

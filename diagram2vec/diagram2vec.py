@@ -3,6 +3,9 @@ from scipy.stats import skew as skewness, kurtosis
 
 # dictionary of quantities computable out of an intervals of a persistence diagram
 quantities = {
+    "birth": lambda x: x[:,0],
+    "death": lambda x: x[:,1],
+    "dmax": lambda x: x[:,1].max() - x[:,1],
     "persistence": lambda x: x[:,1] - x[:,0],
     "midlife": lambda x: (x[:,0] + x[:,1]) / 2,
     "multlife": lambda x: x[:,1] / x[:,0]
@@ -213,3 +216,33 @@ def entropy_curve(diagram, m=101, k_max=None, quantity="persistence", f="linear"
     """
 
     return _curve(diagram, m, k_max, "entropy", quantity, f, **kwargs)
+
+
+def polynomials(diagram, k_max=None, terms=[["birth", "persistence"]], powers=[[1, 1]], f="linear", **kwargs):
+
+    if (type(diagram) == list) & (type(diagram[0]) == np.ndarray):
+        diagram = [diagram]
+
+    if k_max is None:
+        k_max = len(diagram[0]) - 1
+
+    # init polynomials matrix
+    matrix_polynomials = np.zeros((len(diagram), k_max+1, len(terms)))
+
+    for i in range(len(diagram)):
+        for k in range(k_max+1):
+            
+            # filter a diagram according to a confidence function
+            p = quantities["persistence"](diagram[i][k])
+            diagram_ik = diagram[i][k][p > functions[f](p, **kwargs)]
+
+            # compute the terms' polynomials
+            for j, ts in enumerate(terms):
+
+                # compute a pair of quantities out of a diagram
+                q1 = quantities[ts[0]](diagram_ik) ** powers[j][0]
+                q2 = quantities[ts[1]](diagram_ik) ** powers[j][1]
+
+                matrix_polynomials[i,k,j] = q1 @ q2
+
+    return matrix_polynomials

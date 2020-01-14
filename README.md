@@ -7,8 +7,9 @@ Diagram2vec provides the following finite-dimensional vector representations of 
 - k-th Betti number curves
 - persistence curves (curves of quanitites such as persistence, midlife, multitplicative life)
 - entropy curves (curves of entropy of quanitites such as persistence, midlife, multitplicative life)
+- Adcock-Carlsson polynomials [https://arxiv.org/abs/1304.0530](https://arxiv.org/abs/1304.0530)
 
-All representations have &epsilon;-robust versions, i.e. not taking into account intervals with persistence below a certain threshold.
+All representations have &epsilon;-robust versions, i.e. not taking into account intervals with persistence below a certain threshold function.
 
 ## Installation
 
@@ -47,9 +48,12 @@ betti_curve = diagram2dec.persistence_curve(diagrams, m=50, f="linear", b=0.05)
 
 # compute a curve of persistence quantity
 # available quanities: 'betti', 'persistence', 'midlife', 'multlife'
-persistence_curve = diagram2dec.persistence_curve(diagrams, quantity="persistence", m=50)
+persistence_curve = diagram2vec.persistence_curve(diagrams, quantity="persistence", m=50)
 
 # compute a curve of midlife entropy
 # available quanities: 'persistence', 'midlife', 'multlife'
-entropy_curve = diagram2dec.entropy_curve(diagrams, quantity="midlife", m=20)
+entropy_curve = diagram2vec.entropy_curve(diagrams, quantity="midlife", m=20)
+
+# compute Adcock-Carlsson polynomials
+polynomials = diagram2vec.polynomials(diagrams, terms=[["birth", "persistence"], ["dmax", "persistence"]], powers=[[1, 1], [2, 4]])
 ```

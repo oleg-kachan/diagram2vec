@@ -1,1 +1,1 @@
-from .diagram2vec import statistics, euler_curve, persistence_curve, entropy_curve
+from .diagram2vec import statistics, euler_curve, persistence_curve, entropy_curve, polynomials
