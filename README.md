@@ -7,7 +7,7 @@ Diagram2vec provides the following finite-dimensional vector representations of 
 - k-th Betti number curves
 - persistence curves (curves of quanitites such as persistence, midlife, multitplicative life)
 - entropy curves (curves of entropy of quanitites such as persistence, midlife, multitplicative life)
-- Adcock-Carlsson polynomials [https://arxiv.org/abs/1304.0530](https://arxiv.org/abs/1304.0530)
+- Adcock-Carlsson polynomials (https://arxiv.org/abs/1304.0530)
 
 All representations have &epsilon;-robust versions, i.e. not taking into account intervals with persistence below a certain threshold function.
 
